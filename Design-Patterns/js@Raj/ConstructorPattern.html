@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Cunstroctor Pattern</title>
+</head>
+<body>
+<script type="text/javascript">
+     var ConstructorFactory = function (name,age,state){
+
+          this.age = age;
+          this.name = name;
+          this.state = state;
+          this.PrintPerson = function (){
+               console.log(this.name+ "," +this.age+ "," +this.state);
+          };
+
+     };
+     var person1 = new ConstructorFactory("Govardhan",25,"TS");
+     var person2 = new ConstructorFactory("Raja",22,"AP");
+     person1.PrintPerson();
+     person2.PrintPerson();
+</script>
+</body>
+</html>

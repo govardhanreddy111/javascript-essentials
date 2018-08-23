@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Prototype pattern</title>
+</head>
+<body>
+<script type="text/javascript">
+     var peoplePrototype = function(){
+
+     };
+     peoplePrototype.prototype.age = 0;
+     peoplePrototype.prototype.name = "No name";
+     peoplePrototype.prototype.age = "no State";
+     peoplePrototype.prototype.printPerson = function () {
+          console.log(this.name+ "," +this.age+ "," +this.state);
+     }
+     var person1 = new peoplePrototype();
+     person1.name= "Raja";
+     person1.age = 22;
+     person1.state = "Ap";
+     person1.printPerson();
+</script>
+</body>
+</html>

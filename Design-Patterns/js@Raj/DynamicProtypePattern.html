@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Dynamic Prototype</title>
+</head>
+<body>
+<script type="text/javascript">
+     var peopleDynamicPrototype = function (name,age,state){
+          this.age=age;
+          this.name=name;
+          this.state=state;
+          if(typeof this.printPerson !=="function"){
+               peopleDynamicPrototype.prototype.printPerson = function (){
+                    console.log(this.name);
+               }
+          }
+     }
+     var person1 = new peopleDynamicPrototype("Raja",22,"KA");
+     person1.printPerson();
+</script>
+</body>
+</html>

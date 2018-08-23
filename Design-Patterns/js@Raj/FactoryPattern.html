@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Factory Pattern</title>
+</head>
+<body>
+<script type="text/javascript">
+     const PeopleFactory = (name,age,state) => {
+          var temp = {};
+          temp.age = age;
+          temp.name = name;
+          temp.state = state;
+          temp.PrintPerson = function (){
+               console.log(this.name+ "," +this.age+ "," +this.state);
+          };
+          return temp;
+     };
+     let person1 = PeopleFactory("John",23,"TS");
+     let person2 = PeopleFactory("Raja",22,"AP");
+     person1.PrintPerson();
+     person2.PrintPerson();
+</script>
+</body>
+</html>
