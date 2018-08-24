@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>call,apply and bind</title>
+</head>
+<body>
+<script type="text/javascript">
+     var obj1 = {num:2};
+     var obj2 = {num:3};
+
+     var addToThis = function (a,b,c){
+          return this.num +a +b +c;
+     }
+     console.log("Call method result :" +addToThis.call(obj1, 1,2,3));
+     var arr = [1,2,3];
+     console.log("apply method : " +addToThis.apply(obj2,arr));
+     // console.log("apply method : " +addToThis.apply(obj1,arr));
+
+     //bind method returns function
+     var bound = addToThis.bind(obj1);
+
+     //and also won't pass array in the place of parameters 1,2,3..
+     console.log("Bind method : " +bound(1,2,3));
+</script>
+</body>
+</html>

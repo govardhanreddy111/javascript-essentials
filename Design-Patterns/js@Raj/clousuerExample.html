@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Clouser example</title>
+</head>
+<body>
+<script type="text/javascript">
+     // clousure : A clousure is an inner function that has access to the outer functions variable in addition to it's own variables and global variables.
+     // The inner function has access not only the outer func variable, but also to the outer func parameters as well.
+     var addTo = function (passedvalue){
+          // inner func
+          var add = function (inner){
+               return passedvalue+inner;
+          };
+          return add;
+     }
+     var addThree = new addTo(3);
+     var addFour = new addTo(4);
+     console.log(addThree(1));
+     console.log(addFour(1));
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Promises</title>
+</head>
+<body>
+<script type="text/javascript">
+     let promiseToCleanTheRoom = new Promise(function(resolve,reject){
+          // cleaning the room
+          let isclean = false;
+          if (isclean){
+               resolve("Cleaned");
+          }else{
+               reject("not cleaned");
+          }
+     });
+     promiseToCleanTheRoom.then(function(fromResolve){
+          console.log("the room " +fromResolve);
+     }).catch(function(fromReject){
+          console.log("the room is " +fromReject);
+     });
+</script>
+</body>
+</html>
