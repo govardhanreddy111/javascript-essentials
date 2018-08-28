@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var Stack = function () {
+            this.count = 0;
+            this.storage = {};
+
+            // Add Values at the end of the stack
+            this.push = function (value) {
+                this.storage[value] = value;
+                this.count++;
+            }
+
+            //Remove and return the pop item
+            this.pop = function (value) {
+                if (this.count === 0) {
+                    return undefined;
+                }
+                this.count--;
+                var result = this.storage[this.count];
+                delete this.storage[this.count];
+                return result;
+            }
+
+            // returns the length
+            this.size = function () {
+                return this.count;
+            }
+
+            // Returns the value at the end of the stack
+            this.peek = function() {
+                return this.storage[this.count-1];
+            }
+        }
+
+        var myStack = new Stack();
+
+        myStack.push(1);
+        myStack.push(2);
+        console.log(myStack.peek());
+        console.log(myStack.pop());
+        console.log(myStack.peek());
+        myStack.push("freeCodeCamp");
+        console.log(myStack.size());
+        console.log(myStack.peek());
+        console.log(myStack.pop());
+        console.log(myStack.peek());
+    </script>
+</head>
+<body>
+
+</body>
+</html>
