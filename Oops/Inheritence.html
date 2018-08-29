@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function Shape(pos) {
+            if (pos!=undefined) this.pos=pos;
+            else pos=[0,0];
+        }
+        Shape.prototype.getPos= function(){
+            return this.pos;
+        }
+        function Rectangle(pos,len, wid) {
+            this.pos=pos;
+            this.len=len;
+            this.wid=wid;
+        }
+        // Let Rectangle inherit Shape
+        Rectangle.prototype=new Shape();
+        Rectangle.prototype.constructor=Rectangle;
+        Rectangle.prototype.getArea= function(){
+            return this.len*this.wid;
+        }
+        function Cuboid(pos,len, wid, hei) {
+            this.pos=pos;
+            this.len=len;
+            this.wid=wid;
+            this.hei=hei;
+        }
+        // Let Cuboid inherit Rectangle
+        Cuboid.prototype=new Rectangle();
+        Cuboid.prototype.constructor=Cuboid;
+        Cuboid.prototype.getVolume= function(){
+            return this.getArea()*this.hei;
+        }
+
+        var cuboid= new Cuboid([4,3],10,5,7);
+        console.log("The cuboid posistion is: "+cuboid.getPos()+"<br>");
+        console.log("The cuboid total area is: "+cuboid.getArea()+"<br>");
+        console.log("The cuboid volume is: "+cuboid.getVolume()+"<br>");
+        var rectangle= new Rectangle([41,23],110,25);
+        console.log("The rectangle posistion is: "+rectangle.getPos()+"<br>");
+        console.log("The rectangle total area is: "+rectangle.getArea()+"<br>");
+
+        function Shape(pos) {
+            this.constructor.prototype.getPos= function(){ return pos; }
+            this.constructor.prototype.setPos= function(p){ return pos=p; }
+        }
+        function Rectangle(pos, len, wid) {
+            this.setPos(pos);
+            this.constructor.prototype.getLen= function(){ return len; }
+            this.constructor.prototype.getWid= function(){ return wid; }
+            this.constructor.prototype.setLen= function(l){ len=l; }
+            this.constructor.prototype.setWid= function(w){ wid=w; }
+            this.constructor.prototype.getArea=function(){ return wid*len;}
+        }
+        function Cuboid(pos,len, wid, hei) {
+            this.setPos(pos);
+            this.setLen(len);
+            this.setWid(wid);
+            this.constructor.prototype.getHei= function(){ return hei; }
+            this.constructor.prototype.getVolume=function(){
+                return this.getArea()*hei;
+            }
+        }
+        // create Inheritance before creating any object
+        Rectangle.prototype= new Shape();
+        Rectangle.prototype.constructor=Rectangle;
+        Cuboid.prototype= new Rectangle();
+        Cuboid.prototype.constructor=Cuboid;
+
+        var cuboid= new Cuboid([4,3],10,5,7);
+        console.log("The cuboid posistion is: "+cuboid.getPos()+"<br>");
+        console.log("The cuboid total area is: "+cuboid.getArea()+"<br>");
+        console.log("The cuboid volume is: "+cuboid.getVolume()+"<br>");
+        var rectangle= new Rectangle([41,23],110,25);
+        console.log("The rectangle posistion is: "+rectangle.getPos()+"<br>");
+        console.log("The rectangle total area is: "+rectangle.getArea()+"<br>");
+
+        function copyProp(toObj, fromObj) {
+            for (obj in fromObj) {
+                toObj[obj]=fromObj[obj];
+            }
+        }
+
+        function Shape(pos) {
+            this.constructor.prototype.getPos= function(){ return pos; }
+            this.constructor.prototype.setPos= function(p){ return pos=p; }
+        }
+        function Rectangle(pos, len, wid) {
+            copyProp(this.constructor.prototype, new Shape(pos));
+            this.constructor.prototype.getLen= function(){ return len; }
+            this.constructor.prototype.getWid= function(){ return wid; }
+            this.constructor.prototype.getArea=function(){ return wid*len;}
+        }
+        function Cuboid(pos,len, wid, hei) {
+            copyProp(this.constructor.prototype, new Rectangle(pos,len, wid));
+            this.constructor.prototype.getHei= function(){ return hei; }
+            this.constructor.prototype.getVolume=function(){
+                return this.getArea()*hei;
+            }
+        }
+
+        var cuboid= new Cuboid([4,3],10,5,7);
+        console.log("The cuboid posistion is: "+cuboid.getPos()+"<br>");
+        console.log("The cuboid total area is: "+cuboid.getArea()+"<br>");
+        console.log("The cuboid volume is: "+cuboid.getVolume()+"<br>");
+        var rectangle= new Rectangle([41,23],110,25);
+        console.log("The rectangle posistion is: "+rectangle.getPos()+"<br>");
+        console.log("The rectangle total area is: "+rectangle.getArea()+"<br>");
+        console.log("Is cuboid instanceof Shape - returns: "+
+            (cuboid instanceof Shape) +"<br>");
+        console.log("Is cuboid instanceof Rectangle - returns: "+
+            (cuboid instanceof Rectangle) +"<br>")
+    </script>
+</head>
+<body>
+
+</body>
+</html>
