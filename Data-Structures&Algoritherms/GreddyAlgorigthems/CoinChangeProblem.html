@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function MinimunCoinChange(coins) {
+      this.coins = coins;
+      this.numCoinTypes = this.coins.length;
+    }
+    MinimunCoinChange.prototype = {
+        generateCoins : function (amount) {
+            var finalResult = [],
+                totalAmount = amount;
+            for(var i = 0; i < this.numCoinTypes;i++){
+                var currentTypeValue = this.coins[i];
+                var typeCount = Math.floor(totalAmount/currentTypeValue);
+                finalResult.push({coinType : currentTypeValue,coinCount : typeCount});
+                totalAmount -= (currentTypeValue * typeCount);
+            }
+            return finalResult;
+        },
+        displayResult : function (amount) {
+           var results = this.generateCoins(amount);
+           results.forEach(function (value) {
+               if(value.coinCount){
+                   console.log("The Rs "+value.coinType+"/- are : "+value.coinCount);
+               }
+           })
+        }
+    }
+    var coinTypes = [2000,500,200,100,50,20,10,5,2,1],
+        coinChanger = new MinimunCoinChange(coinTypes);
+    coinChanger.displayResult(2873);
+</script>
+</body>
+</html>
