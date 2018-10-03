@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function greedyKnapSack(items,weight) {
+           var knapSackWeight = 0,
+               sackValue = 0,
+               tatalItems = items.length;
+               items.sort(function (a,b) {
+                    return (b.value/b.weight - a.value/a.weight);
+                })
+
+           for(var i = 0; i < tatalItems && knapSackWeight <= weight; i++){
+               if(items[i].weight <= (weight - knapSackWeight)){
+                   knapSackWeight += items[i].weight;
+                   sackValue += items[i].value;
+               }else{
+                   var remainder = weight - knapSackWeight;
+                   knapSackWeight += remainder;
+                   var pWeight = remainder / items[i].weight;
+                   var vAmount = pWeight * items[i].value;
+                   sackValue += vAmount;
+                   return sackValue;
+               }
+           }
+        }
+        var items = [
+            {weight : 4,value : 18},
+            {weight : 2,value : 10},
+            {weight : 3,value : 5},
+            {weight : 5,value : 15},
+            {weight : 1,value : 6},
+            {weight : 1,value : 3},
+            {weight : 7,value : 7}
+        ];
+        var knapSackWeight = 15;
+        var kFraction = greedyKnapSack(items,knapSackWeight);
+        console.log(kFraction);
+
+        // counting Maximum Profit for given weight
+    </script>
+</body>
+</html>
