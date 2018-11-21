@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var COUNT = 40;
+    function iterativeFibonacci(n) {
+        var first = 0,
+            second = 1,
+            next;
+        var results = [first,second];
+        if(n < 2) return 2;
+        for(i = 2; i < n; i++){
+            next = first+second;
+            results.push(next);
+            first = second;
+            second = next;
+        }
+        console.log(results);
+    }
+    console.time("Iterative Fibonacci");
+    iterativeFibonacci(COUNT);
+    console.timeEnd("Iterative Fibonacci");
+</script>
+</body>
+</html>

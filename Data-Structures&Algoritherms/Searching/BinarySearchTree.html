@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<script>
+    class TreeNode{
+        constructor(key){
+            this.keyValue = key;
+            this.left = null;
+            this.right = null;
+        }
+    }
+
+    class BinarySearchTree{
+        constructor(){
+            this.root = null;
+            this.count = 0;
+        }
+
+        insert(key){
+            debugger;
+            let newNode = new TreeNode(key);
+            this.root === null ? this.root = newNode : this.insertTo(this.root,newNode);
+            this.count++;
+        }
+
+        insertTo(positionNode,newNode){
+            if(newNode.keyValue < positionNode.keyValue){
+                if(positionNode.left === null){
+                    positionNode.left = newNode;
+                }else{
+                    this.insertTo(positionNode.left,newNode);
+                }
+            }else{
+                if(positionNode.right === null){
+                    positionNode.right = newNode
+                }else{
+                    this.insertTo(positionNode.right,newNode);
+                }
+            }
+        }
+
+        find(node,key){
+            debugger
+            let curentNode = node;
+            if(curentNode === null){
+                return false;
+            }
+            if(curentNode.keyValue === key){
+                console.log(key+' Found');
+                return curentNode;
+            }
+            if(key < curentNode.keyValue){
+                return this.find(curentNode.left,key);
+            }
+            return this.find(curentNode.right,key);
+        }
+    }
+
+    let bst = new BinarySearchTree();
+    bst.insert(60);
+</script>
+</body>
+</html>

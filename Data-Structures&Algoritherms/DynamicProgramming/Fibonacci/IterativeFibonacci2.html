@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function IterativeFibonnaci2(n) {
+        if(n < 2) return n;
+        var results = [0,1];
+        for(var i = 2; i< n; i++){
+            results.push(results[results.length-1]+results[results.length-2]);
+        }
+        return (results);
+    }
+    console.time("Time")
+    console.log(IterativeFibonnaci2(40));
+    console.timeEnd("Time")
+</script>
+</body>
+</html>

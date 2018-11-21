@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var list = [2, 5, 3, 7, 8, 10, 15, 18, 24, 111, 12, 19, 87];
+    function itemSearch(itemToFind) {
+        var low = 0,
+            high = list.length-1,
+            mid,guessed;
+        if(low <= high){
+            mid = Math.floor(low+high/2);
+            guessed = list[mid];
+            if(guessed === itemToFind){
+                console.log('Found item at index: ' + mid + ', value is ' + guessed);
+            }
+            if(itemToFind < guessed){
+                high = mid - 1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return null;
+    }
+    itemSearch(15);
+
+</script>
+</body>
+</html>

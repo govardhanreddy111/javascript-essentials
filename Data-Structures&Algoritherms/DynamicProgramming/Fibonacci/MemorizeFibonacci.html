@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function memorizeFibonacci(n){
+        var cache = {};
+        function fibonacci(n) {
+            let result;
+            if(cache[n]){
+                result = cache[n];
+            }else {
+                if(n < 2) return n;
+                result = fibonacci(n-1)+fibonacci(n-2);
+                cache[n] = result;
+            }
+            return result;
+        }
+        return fibonacci(n);
+    }
+    console.time("Memorize fibonacci");
+    console.log(memorizeFibonacci(40));
+    console.timeEnd("Memorize fibonacci");
+</script>
+</body>
+</html>

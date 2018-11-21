@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function factorialDP(n) {
+        var result = n;
+        for(var i = 1; i < n; i++){
+            result *= (n-i);
+        }
+        return result;
+    }
+
+    console.time("factorial");
+    var factorial = factorialDP(5);
+    console.timeEnd("factorial");
+</script>
+</body>
+</html>

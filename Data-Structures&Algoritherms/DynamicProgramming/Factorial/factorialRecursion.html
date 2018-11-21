@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function factorialRecursion(n) {
+        if(n === 0 || n === 1){
+            return 1;
+        }
+        return n * factorialRecursion(n-1);
+    }
+    console.time("factorial")
+    var factorial = factorialRecursion(5);
+    console.timeEnd("factorial")
+
+</script>
+</body>
+</html>

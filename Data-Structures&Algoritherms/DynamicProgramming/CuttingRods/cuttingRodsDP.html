@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var rodLength = 4,
+        prices = [1,5,8,9];
+    function TotalRevenueDp(rLen, prices){
+        var r = [0];
+
+        for(var i = 1; i <= rLen; i++){
+            var currentMaxRevenue = 0;
+            for(var j = 1; j <=i; j++){
+                var currentRevenue = prices[j-1]+r[i-j];
+                if(currentRevenue > currentMaxRevenue){
+                    currentMaxRevenue = currentRevenue;
+                }
+            }
+            r[i] = currentMaxRevenue;
+        }
+        return r[rLen];
+    };
+
+    var totalRevDp = TotalRevenueDp(rodLength,prices);
+</script>
+</body>
+</html>
