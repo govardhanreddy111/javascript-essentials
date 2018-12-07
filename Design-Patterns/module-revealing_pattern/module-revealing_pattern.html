@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>module-revealing_pattern</title>
+</head>
+<body>
+<h1>javascript Sandbox- Patterns</h1>
+<script>
+   /* (function () {
+        // Declare Private Variables and functions
+        return {
+            // Declare Public Variables and functions
+        }
+    })();*/
+
+   // Standard Module Pattern
+   const UICtrl = (function () {
+       let text = 'Hello World';
+
+       const changeText = function () {
+           const element = document.querySelector('h1');
+           element.textContent = text;
+       }
+       return {
+           callChageText : function () {
+               changeText();
+               console.log(text);
+           }
+       }
+   })();
+
+   UICtrl.callChageText();
+
+   // Revealing Module pattern
+
+    const ItemCtrl = (function () {
+        let data = [];
+        function add(item){
+            data.push(item);
+        }
+        function get(id) {
+            return data.find(item =>{
+                return item.id === id;
+            })
+        }
+
+        return {
+            add :add,
+            get :get
+        }
+    })();
+
+    ItemCtrl.add({id : 1,name :"John"});
+    ItemCtrl.get(1);
+</script>
+</body>
+</html>

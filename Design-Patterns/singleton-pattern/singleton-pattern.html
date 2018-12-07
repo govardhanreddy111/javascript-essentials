@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>singleton-pattern</title>
+</head>
+<body>
+<script>
+   const Singleton = (function () {
+       let instance;
+       
+       function createInstance() {
+           const object = new Object({name : 'Govardhan'});
+           return object;
+       }
+
+       return {
+           getInstance : function () {
+               if(!instance){
+                   instance = createInstance();
+               }
+               return instance;
+           }
+       }
+   })();
+
+   const instanceA = Singleton.getInstance();
+   const instanceB = Singleton.getInstance();
+   console.log(instanceA === instanceB);
+</script>
+</body>
+</html>
