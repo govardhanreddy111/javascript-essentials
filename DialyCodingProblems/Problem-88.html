@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-88</title>
+</head>
+<body>
+  <h1>Implement division of two positive integers without using
+      the division, multiplication, or modulus operators.</h1>
+   <h2> Return the quotient as an integer, ignoring the remainder.</h2>
+
+<script>
+    var dividend = 205,
+        quoitent = 8,
+        divisor = 0,
+        remainder;
+    while(dividend >= quoitent){
+        remainder = dividend - quoitent;
+        dividend = remainder;
+        divisor++
+    };
+    console.log("Divisor - "+divisor);
+    console.log("Remainder - "+remainder);
+</script>
+</body>
+</html>
