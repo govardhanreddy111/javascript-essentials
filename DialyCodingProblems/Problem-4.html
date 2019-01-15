@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-4</title>
+</head>
+<body>
+<h1>Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.</h1>
+<h2>For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.</h2>
+
+<script>
+    var arr = [3,4,-1,-2,0,1,1];
+    arr = arr.sort(function (a,b) {
+        return a-b;
+    }).filter(function (x) {
+        return x > 0;
+    })
+    for(var i = 0; i <arr.length; i++){
+        if(i+1 != arr[i]){
+            console.log(i+1);
+            break;
+        }
+    }
+</script>
+</body>
+</html>

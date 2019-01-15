@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Given a list of numbers and a number k, return whether any two numbers from the list add up to k.</h1>
+
+<h2>For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.</h2>
+
+<h3>Bonus: Can you do this in one pass?</h3>
+<script>
+    // With One Pass
+    var arr = [10,15,3,7],
+        sum = 17;
+    function findSumValid() {
+        arr = arr.sort(function (a,b) {
+           return a-b;
+        })
+        var l = 0,
+            r = arr.length-1;
+        while(l < r){
+            if(arr[l]+arr[r] === sum){
+                return true;
+            }else if(arr[l]+arr[r] < sum){
+                l++
+            }else{
+                r--;
+            }
+        }
+        return false;
+    }
+    console.time("time")
+    console.log(findSumValid())
+    console.timeEnd("time")
+
+    // With 2 pass
+    var arr = [10, 15, 3, 7];
+    var k = 17,
+        sortedArr = arr.sort(function(a,b){
+            return (b-a);
+        }),
+        arrLen = arr.length,
+        value = false;
+    console.time("time")
+    for(var i = 0; i < arr.length; i++){
+        var first = arr[i];
+        if(k > first){
+            var remain = k - first;
+            for(var j = i; j < arr.length; j++){
+                if(remain == arr[j]){
+                    value = true;
+                    break;
+                }
+            }
+        }
+    }
+    console.timeEnd("time")
+    console.log(value)
+
+</script>
+</body>
+</html>
