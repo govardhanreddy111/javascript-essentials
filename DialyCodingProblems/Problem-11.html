@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-11</title>
+</head>
+<body>
+<h1>Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.</h1>
+<h2>For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].</h2>
+
+<script>
+    var arr = ['dog','deer','deal'],
+        str = 'de',
+        result = [];
+    arr.forEach((val =>{
+        if(val.indexOf(str) !== -1){
+            result.push(val)
+        }
+    }))
+    console.log(result);
+</script>
+</body>
+</html>

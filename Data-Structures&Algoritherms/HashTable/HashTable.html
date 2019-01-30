@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HashTable</title>
+</head>
+<body>
+<script>
+    function hashNode(key,value) {
+        this.key = key;
+        this.value = value;
+        this.toString = function () {
+            return this.key+' --> '+this.value
+        }
+    }
+
+    function HashTable(size) {
+        this.table = new Array(size);
+
+        var hashFunction = function (key) {
+            var hashTotal = 0,
+                hashIndex,
+                stringLength = key.length;
+
+            if(stringLength === 0){
+                return hashTotal;
+            }
+            for(var i = 0; i< key.length; i++){
+                var char = key.charCodeAt(i);
+                hashTotal = ( (hashTotal << 5) - hashTotal)+char;
+            }
+
+            hashIndex = hashTotal % this.table.length;
+            return hashIndex;
+        };
+
+        this.getHash = hashFunction;
+    };
+
+    HashTable.prototype = {
+        put : function (key,value) {
+            var indexOfKey = this.getHash(key);
+
+            if(this.table[indexOfKey] === undefined){
+                this.table[indexOfKey] = new hashNode(key,value);
+            }
+            else{
+                while(this.table[indexOfKey] !== undefined){
+                    indexOfKey++;
+                }
+                this.table[indexOfKey] = new hashNode(key,value);
+            }
+        },
+        get : function (key) {
+            var indexOfKey = this.getHash(key);
+            this.table.forEach(function (currentValue) {
+                if(currentValue.key === key){
+                    console.log(currentValue.value)
+                }
+            })
+        },
+        remove : function (key) {
+            var indexOfKey = this.getHash(key);
+            this.table[indexOfKey] = undefined;
+        },
+        getHashTable : function () {
+            this.table.forEach(function (value,key) {
+                console.log(key+" --> "+value)
+            })
+        }
+    };
+    var hashTable = new HashTable(137);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-1</title>
+</head>
+<body>
+<h1>Given an array C of size N-1 and given that there are numbers from 1 to N with one element missing, the missing number is to be found.</h1>
+<h2>Eg: [0,1,2,3,4,5,8,7], return 6</h2>
+<script>
+    function findMissedNum(given_array){
+        var givenArray = given_array;
+        var modifiedArray = givenArray.sort(function (a,b) {
+            return a-b;
+        }).filter(function (x) {
+            return x > 0;
+        })
+        for(var i = 0; i < modifiedArray.length; i++){
+            if(modifiedArray[i] !== i+1){
+                return i+1;
+                break;
+            }
+        }
+    }
+    var arr = [-1,4,5,6,2,1,4];
+    console.log(findMissedNum(arr))
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-2</title>
+</head>
+<body>
+<h1>Find subarray with given sum | Set 1 (Nonnegative Numbers)</h1>
+<pre>
+    Input: arr[] = {1, 4, 20, 3, 10, 5}, sum = 33
+    Ouptut: Sum found between indexes 2 and 4
+</pre>
+<script>
+
+    // This is O(n^2)
+    function subArray_sum(arr,sum){
+        var current_sum, i, j;
+        for(i = 0; i < arr.length; i++){
+            current_sum = arr[i];
+            for(j = i+1; j <= arr.length; j++){
+                if(current_sum == sum){
+                    var p = j-1;
+                    console.log("Found between "+i, p);
+                    return;
+                }
+                if(current_sum > sum || j == arr.length){
+                    break;
+                }
+                current_sum = current_sum+arr[j];
+            }
+        }
+        alert('not found');
+        return;
+    }
+
+    var arr = [1, 4, 0, 0, 3, 10, 5],
+        sum = 7;
+    console.time("time")
+    subArray_sum(arr,sum);
+    console.timeEnd("time")
+
+    // This is O(n)
+
+    function findIndexSubArray_sum(arr,sum){
+        var current_sum = arr[0], start = 0, i;
+        for(i = 1; i <= arr.length; i++){
+            while(current_sum > sum && start < i-1){
+                current_sum = current_sum -arr[start];
+                start++;
+            }
+
+            if(current_sum == sum){
+                var p =i - 1;
+                console.log("Found between "+start, p);
+                return 1;
+            }
+            if(i < arr.length){
+                current_sum = current_sum+arr[i];
+            }
+        }
+        console.log("not found");
+        return;
+    }
+
+   /* console.time("time");
+    findIndexSubArray_sum(arr,sum)
+    console.timeEnd("time");*/
+</script>
+</body>
+</html>

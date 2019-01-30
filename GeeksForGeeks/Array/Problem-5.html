@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equilibrium index of an array</title>
+</head>
+<body>
+<h1>Equilibrium index of an array</h1>
+<h2>Equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes. For example, in an array A:</h2>
+<pre>
+    <b>Example :</b>
+
+        Input : A[] = {-7, 1, 5, 2, -4, 3, 0}
+        Output : 3
+        3 is an equilibrium index, because:
+        A[0] + A[1] + A[2]  =  A[4] + A[5] + A[6]
+</pre>
+<script>
+
+    // With O(n^2)
+    function equilibriumPointArray(arr) {
+      for(var i = 1; i < arr.length; i++){
+          var left = 0,
+              right = 0;
+          for(var j = 0; j < i; j++){
+              left += arr[j];
+          }
+          for(var k = i+1; k < arr.length; k++){
+              right += arr[k];
+          }
+          if(left == right){
+              console.log("Point is "+i);
+              break;
+          }
+      }
+    }
+    var arr = [-7, 1, 5, 2, -4, 3, 0,1];
+  //  equilibriumPointArray(arr);
+
+    // with O(n)
+
+    function equilibriumPointArray2(arr) {
+        var sum = 0,
+            leftSum = 0;
+        for(var i = 0; i< arr.length; i++){
+            sum +=arr[i];
+        }
+        for(var i = 0; i < arr.length; i++){
+            sum -=arr[i];
+
+            if(leftSum == sum){
+                alert(i);
+                return i;
+            }
+            leftSum += arr[i];
+        }
+        return 0;
+    }
+
+    equilibriumPointArray2(arr);
+</script>
+</body>
+</html>

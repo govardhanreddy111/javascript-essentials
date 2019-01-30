@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kadane's Algorithem</title>
+</head>
+<body>
+<h1>Write an efficient program to find the sum of contiguous subarray within a one-dimensional array of numbers which has the largest sum.</h1>
+<img src="https://www.geeksforgeeks.org/wp-content/uploads/kadane-Algorithm.png" alt="kadane-algorithm" width="564" height="345" class="aligncenter size-full wp-image-139662">
+<script>
+    function maxSubArraySum(arr) {
+        var max_so_far = 0;
+        var max_ending_here = 0;
+
+        for(var i = 0; i < arr.length; i++){
+            max_ending_here = max_ending_here + arr[i];
+            if(max_ending_here < 0){
+                max_ending_here = 0;
+            }else if(max_so_far
+                < max_ending_here){
+                max_so_far = max_ending_here;
+            }
+        }
+        return max_so_far;
+    }
+    var arr = [-2, -3, 4, -1, -2, 1, 5, -3];
+    console.log(maxSubArraySum(arr))
+</script>
+</body>
+</html>

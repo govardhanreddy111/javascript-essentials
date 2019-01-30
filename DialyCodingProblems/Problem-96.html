@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Problem-96</title>
+</head>
+<body>
+<h1>Given a number in the form of a list of digits, return all possible permutations.</h1>
+<h2>For example, given [1,2,3], return [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]].</h2>
+<script type="text/javascript">
+	function getAllPermutations(str){
+		var results = [];
+		if(str.length === 1){
+			results.push(str);
+			return results;
+		}
+
+		for(var i = 0; i < str.length; i++){
+			var firstChar = str[i];
+			var charsLeft = str.substring(0,i)+str.substring(i+1);
+			var innerPermutations = getAllPermutations(charsLeft);
+			for(var j = 0; j <innerPermutations.length; j++){
+				results.push(firstChar+innerPermutations[j]);
+			}
+		}
+		return results;
+	}
+	console.log(getAllPermutations('ABC'));
+	
+</script>
+</body>
+</html>
