@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-6</title>
+</head>
+<body>
+<h1>Given an array of n positive integers. Write a program to find the sum of maximum sum subsequence of the given array such that the integers in the subsequence are sorted in increasing order. For example, if input is {1, 101, 2, 3, 100, 4, 5}, then output should be 106 (1 + 2 + 3 + 100), if the input array is {3, 4, 5, 10}, then output should be 22 (3 + 4 + 5 + 10) and if the input array is {10, 5, 4, 3}, then output should be 10</h1>
+<script>
+    function sumArrayInIncreasingOrder(arr,n) {
+        var i, j, max = 0;
+        var msis = [];
+        for (i = 0; i < n; i++){
+            msis[i] = arr[i];
+        }
+
+
+        for(i = 1; i < n; i++){
+            for(j = 0; j < i; j++){
+                if(arr[i] > arr[j]){
+                    msis[i] = msis[j]+arr[i]
+                }
+            }
+        }
+
+        for(i = 0; i < n; i++){
+            if(max < msis[i]){
+                max = msis[i];
+            }
+        }
+
+        alert(max);
+    }
+    var arr = [10, 5, 4, 3];
+    sumArrayInIncreasingOrder(arr,arr.length);
+</script>
+</body>
+</html>

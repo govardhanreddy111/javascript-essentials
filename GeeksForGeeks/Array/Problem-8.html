@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimum Platforms</title>
+</head>
+<body>
+<h1>Given arrival and departure times of all trains that reach a railway station, find the minimum number of platforms required for the railway station so that no train waits.</h1>
+<h2>We are given two arrays which represent arrival and departure times of trains that stop</h2>
+<pre>
+    Input:
+        arr[]  = {9:00,  9:40, 9:50,  11:00, 15:00, 18:00}
+        dep[]  = {9:10, 12:00, 11:20, 11:30, 19:00, 20:00}
+    Output: 3
+</pre>
+<script>
+    function findMinimumPlatforms(arrivals,departures) {
+        arrivals.sort(function (a,b) {
+            return(a-b);
+        });
+        departures.sort(function (a,b) {
+            return(a-b);
+        })
+        var platForms = 1; result = 1;
+        var i = 1, j = 0;
+        while(i < arrivals.length && j < arrivals.length){
+            if(arrivals[i] <= departures[j]){
+                platForms++;
+                i++;
+                if(platForms > result){
+                    result = platForms;
+                }
+            }else{
+                platForms--;
+                j++;
+            }
+        }
+        alert(result);
+    }
+    var arrivals = [900,  940, 950,  1100, 1500, 1800];
+    var departures = [910, 1200, 1120, 1130, 1900, 2000];
+
+    findMinimumPlatforms(arrivals,departures);
+</script>
+</body>
+</html>

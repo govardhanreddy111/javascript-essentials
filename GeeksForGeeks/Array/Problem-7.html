@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaders in an array</title>
+</head>
+<body>
+<h1>Write a program to print all the LEADERS in the array. An element is leader if it is greater than all the elements to its right side. And the rightmost element is always a leader. For example int the array {16, 17, 4, 3, 5, 2}, leaders are 17, 5 and 2.</h1>
+<script>
+
+    // This is O(n^2)
+    function findLeadersInArray(arr,n) {
+        var leaders = [];
+        for(var i = 0; i < n; i++){
+            for(var j = i+1; j <n; j++){
+                if(arr[i] <= arr[j]){
+                    break;
+                }
+            }
+            if(j == n){
+                leaders.push(arr[i]);
+            }
+        }
+        console.log(leaders);
+    }
+    var arr = [16, 17, 4, 3, 5, 2];
+   // findLeadersInArray(arr,arr.length);
+
+
+    // This is O(n)
+    function findLeadersInArrayEfficient(arr,n){
+        var leaders = [];
+        var max_of_right = arr[n-1];
+        leaders.push(max_of_right);
+
+        for(var i = n-2; i >= 0; i--){
+            if(max_of_right < arr[i]){
+                max_of_right = arr[i];
+                leaders.push(max_of_right);
+            }
+        }
+
+        console.log(leaders)
+    }
+
+    findLeadersInArrayEfficient(arr,arr.length);
+</script>
+</body>
+</html>
