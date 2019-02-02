@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trapping Rain Water</title>
+</head>
+<body>
+<h1>Given an array A of N non-negative integers representing height of blocks at index i as Ai where the width of each block is 1. Compute how much water can be trapped in between blocks after raining.</h1>
+<img alt="" src="http://www.geeksforgeeks.org/wp-content/uploads/watertrap.png" style="height:503px; width:404px">
+
+<script>
+
+    function countRainWater(arr) {
+        var water = 0,
+            left = [],
+            right = [];
+
+        // fill left & Right array
+            left[0] = arr[0];
+            right[arr.length-1] = arr[arr.length - 1];
+            for(var i = 1; i < arr.length; i++){
+                left[i] = Math.max(left[i-1],arr[i]);
+            }
+
+            for(var i = arr.length -2; i >= 0; i--){
+                right[i] = Math.max(right[i+1],arr[i]);
+            }
+
+            for(var i = 0; i < arr.length; i++){
+                water += Math.min(left[i],right[i]) - arr[i];
+            }
+
+            alert(water);
+
+    }
+
+    var arr = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
+    countRainWater(arr)
+</script>
+</body>
+</html>
