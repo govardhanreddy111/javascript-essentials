@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LinkedList</title>
+</head>
+<body>
+<h1>Linked List</h1>
+<script>
+    function Node(val) {
+        this.element = val;
+        this.next = null;
+        this.previous = null;
+    }
+
+    function LinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    LinkedList.prototype = {
+        addToHead : function (val) {
+            let newNode = new Node(val);
+            if(this.head){
+                this.head.previous = newNode;
+                newNode.next  = this.head;
+            }else{
+                this.tail = newNode;
+            }
+            this.head = newNode;
+            this.length++;
+        },
+        findPositionNode : function(key){
+          let currentNode, index = 0;
+          currentNode = this.head;
+          while(currentNode){
+            if(key === index){
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+            index++;
+          }
+          return null;
+        },
+        findMiddleElement : function(){
+            let middle = Math.floor(this.size()/2);
+          let foundMiddle = this.findPositionNode(middle);
+          console.log(foundMiddle.element);
+        },
+        reverse : function(){
+            let node = this.head,
+                previous = null;
+            while(node){
+               let save = node.next;
+               node.next = previous;
+               previous = node;
+               node = save;
+            }
+            return previous;
+        },
+        rotate : function(k){
+          if( k == 0) return
+
+            let current = this.head;
+          let count = 1;
+          while(count < k && current != null){
+              current = current.next;
+              count++
+          }
+
+          if(current == null){
+              return;
+          }
+          let kthNode = current;
+          while(current.next != null){
+              current  = current.next;
+          }
+
+          current.next = this.head;
+          this.head = kthNode.next;
+          kthNode.next = null;
+          return current;
+        },
+        display : function () {
+            let currentNode = this.head;;
+            while(currentNode){
+                console.log(currentNode.element);
+                currentNode = currentNode.next;
+            }
+        },
+        size : function () {
+            return this.length;
+        }
+    }
+
+    var lL = new LinkedList();
+    lL.addToHead(2);
+    lL.addToHead(3);
+    lL.addToHead(4);
+    lL.addToHead(5);
+    lL.addToHead(6);
+    lL.addToHead(7);
+    lL.display();
+
+
+
+</script>
+</body>
+</html>

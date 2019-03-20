@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>queueUsingStacks</title>
+</head>
+<body>
+<h1>Queue using Stacks
+</h1>
+<script>
+    let Stack1 = [];
+    let Stack2 = [];
+    
+    function Enqueue(element) {
+        Stack1.push(element);
+    }
+    function Dequeue() {
+        if(Stack2.length === 0){
+            if(Stack1.length === 0){
+                return 'Cannot dequeue'
+            }
+            while(Stack1.length > 0){
+                let p = Stack1.pop();
+                Stack2.push(p);
+            }
+        }
+        return Stack2.pop();
+    }
+</script>
+</body>
+</html>

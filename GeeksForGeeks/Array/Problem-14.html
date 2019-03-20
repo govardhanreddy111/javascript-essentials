@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Find the element before which all the elements are smaller than it, and after which all are greater</h1>
+<h2>Given an array, find an element before which all elements are smaller than it, and after which all are greater than it. Return index of the element if there is such an element, otherwise return -1.</h2>
+<pre>
+    Input:   arr[] = {5, 1, 4, 3, 6, 8, 10, 7, 9};
+    Output:  Index of element is 4
+    All elements on left of arr[4] are smaller than it
+    and all elements on right are greater.
+
+    Input:   arr[] = {5, 1, 4, 4};
+    Output:  Index of element is -1
+</pre>
+
+<script>
+    // This is O(n^2)
+    function findBalancedElement(arr,n) {
+        var isLeftOk = false;
+        var result = -1;
+        for(var i = 1; i < n-1; i++){
+            for(var j = 0; j < i; j++){
+                if(arr[j] > arr[i]){
+                    break;
+                }else{
+                    isLeftOk = true;
+                }
+            }
+
+            if(isLeftOk){
+                for(var j = i+1; j < n; j++){
+                    if(arr[i] > arr[j]){
+                        break;
+                    }else{
+                        result = arr[i];
+                    }
+                    if(arr[n-1] === arr[j+1]){
+                        return result;
+                    }
+                }
+            }
+        }
+
+    }
+
+    var arr = [5, 1, 4, 3, 6, 8, 10, 7, 9];
+ //   alert(findBalancedElement(arr,arr.length));
+
+    function findElement(arr,n){
+        var leftMax = [];
+        leftMax[0] = Number.MIN_SAFE_INTEGER;
+
+        for(var i = 1; i < n; i++){
+            leftMax[i] = Math.max(leftMax[i -1],arr[i-1])
+        }
+        var rightMin = Number.MAX_SAFE_INTEGER;
+
+        for(var i = n-1; i >= 0; i--){
+            if(leftMax[i] < arr[i] && rightMin > arr[i]){
+                return arr[i];
+            }
+            rightMin = Math.min(rightMin,arr[i]);
+        }
+        return -1;
+    }
+
+    alert(findElement(arr,arr.length));
+</script>
+</body>
+</html>

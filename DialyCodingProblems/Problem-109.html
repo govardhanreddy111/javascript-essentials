@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem-109</title>
+</head>
+<body>
+<h1>Given an unsigned 8-bit integer, swap its even and odd bits. The 1st and 2nd bit should be swapped, the 3rd and 4th bit should be swapped, and so on.</h1>
+<h2>
+    For example, 10101010 should be 01010101. 11100010 should be 11010001.</h2>
+
+<script>
+
+    function swapBits(x) {
+       var evenBits = x & 0xAAAAAAAA,
+           oddBits = x & 0x55555555;
+
+       evenBits >> 1;
+       oddBits >> 1;
+
+       return (evenBits |oddBits);
+    }
+
+    var x = 23;
+    alert(swapBits(x))
+</script>
+</body>
+</html>

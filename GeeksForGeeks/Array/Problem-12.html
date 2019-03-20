@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pythagorean Triplet in an array</title>
+</head>
+<body>
+<h1>Given an array of integers, write a function that returns true if there is a triplet (a, b, c) that satisfies a2 + b2 = c2.</h1>
+<pre>
+    Input: arr[] = {3, 1, 4, 6, 5}
+    Output: True
+    There is a Pythagorean triplet (3, 4, 5).
+
+    Input: arr[] = {10, 4, 6, 12, 5}
+    Output: False
+    There is no Pythagorean triplet.
+</pre>
+<script>
+
+    // This is O(n^3)
+    function findPythogorean(arr,n) {
+        for(var i = 0; i<n; i++){
+            for(var j = i+1; j < n; j++){
+                for(var k = j+1; k < n; k++){
+                    var x = arr[i]*arr[i], y = arr[j]*arr[j], z = arr[k]*arr[k];
+                    if(x == y+z || y == x+z || z == x+y){
+                        alert('yes');
+                        return;
+                    }
+                }
+            }
+        }
+        alert('no');
+    }
+
+    var arr = [3, 1, 4, 6, 5];
+//    findPythogorean(arr,arr.length);
+
+    // This is O(n^2)
+
+    function findEfficientPythogorean(arr,n){
+        for(var i = 0; i < n; i++){
+            arr[i] = Math.pow(arr[i],2);
+        }
+        arr.sort(function (a,b) {
+            return a-b;
+        });
+
+        for(var i = n-1; i >=2; i--){
+            var l = 0,
+                r = i - 1;
+
+            while(l < r){
+                if(arr[l]+arr[r] == arr[i]){
+                    alert('yes');
+                    return;
+                }
+                if(arr[l]+arr[r] < arr[i]){
+                    l++
+                }else{
+                    r--;
+                }
+            }
+        }
+        alert('no');
+    }
+
+    findEfficientPythogorean(arr,arr.length);
+</script>
+</body>
+</html>

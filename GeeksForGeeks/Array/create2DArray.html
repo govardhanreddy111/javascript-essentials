@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2DArray</title>
+</head>
+<body>
+<script>
+    Array.matrix = function (rows,colums) {
+        var arr = [];
+        for(var i = 0; i < rows; i++){
+            var row = [];
+            for(var j = 0; j <colums; j++){
+                row[j] = j;
+            }
+            arr[i] = row;
+        }
+        return arr;
+    }
+    var nums = Array.matrix(5,5);
+    console.log(nums);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chocolate Distribution Problem</title>
+</head>
+<body>
+<h1>Given an array of n integers where each value represents number of chocolates in a packet. Each packet can have variable number of chocolates. There are m students, the task is to distribute chocolate packets such that:</h1>
+<ol>
+    <li>Each student gets one packet.</li>
+    <li>The difference between the number of chocolates in packet with maximum chocolates and packet with minimum chocolates given to the students is minimum.</li>
+</ol>
+<script>
+
+    function chacolateDistribution(arr,count) {
+        arr.sort(function (a,b) {
+            return a-b;
+        })
+        var minimum = arr[count-1]-arr[0];
+        for(var i =1; i < arr.length-(count-1); i++){
+            var diff = arr[count+i-1]-arr[i];
+            if(minimum > diff){
+                minimum = diff;
+                console.log(arr[i],arr[count+i-1])
+            }
+        }
+        alert(minimum);
+    }
+
+    var arr = [3, 4, 1, 9, 56, 7, 9, 12],
+        count = 5;
+    chacolateDistribution(arr,count);
+</script>
+</body>
+</html>

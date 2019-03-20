@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Given an array arr[], find the maximum j – i such that arr[j] > arr[i]</title>
+</head>
+<body>
+<h1>Given an array arr[], find the maximum j – i such that arr[j] > arr[i]</h1>
+<pre>
+    Input: {34, 8, 10, 3, 2, 80, 30, 33, 1}
+  Output: 6  (j = 7, i = 1)
+
+  Input: {9, 2, 3, 4, 5, 6, 7, 8, 18, 0}
+  Output: 8 ( j = 8, i = 0)
+
+  Input:  {1, 2, 3, 4, 5, 6}
+  Output: 5  (j = 5, i = 0)
+
+  Input:  {6, 5, 4, 3, 2, 1}
+  Output: -1
+</pre>
+<script>
+    function findMaxIndex(arr,n) {
+        var maxDiff = -1,i,j,iPos,jPos;
+        for(i =0; i <n; i++){
+            for(j = n-1; j > i; j--){
+                if(arr[j] > arr[i] && maxDiff < (j - i)){
+                    iPos = i;
+                    jPos = j;
+                    maxDiff = j-i;
+                }
+            }
+        }
+        console.log("i - "+iPos+" ---- j - "+jPos);
+        console.log("maxDiff "+maxDiff);
+    }
+    var arr = [34, 8, 10, 3, 2, 80, 30, 33, 1];
+   // findMaxIndex(arr,arr.length); // This is O(n^2)
+
+    function findMaxindexArray(arr,n){
+        function max(x,y) {
+            return x > y ? x : y;
+        }
+        function min(x,y) {
+            return x < y ? x : y;
+        }
+        var LMin = [];
+        LMin[0] = arr[0];
+        for(var i = 1; i < n; i++){
+            LMin[i] = min(arr[i],LMin[i - 1]);
+        }
+        var RMax = [];
+        RMax[n - 1] = arr[n-1];
+        for(var j = n-2; j >= 0; j--){
+            RMax[j] = max(arr[j],RMax[j+1]);
+        }
+
+        var i = j = 0, maxDiff = -1;
+        while(j < n && i < n){
+            if(LMin[i] < RMax[j]){
+                maxDiff = max(maxDiff, j-1);
+                j = j+1;
+            }else{
+                i = i+1;
+            }
+        }
+        console.log(maxDiff);
+    }
+    findMaxindexArray(arr,arr.length);
+</script>
+</body>
+</html>

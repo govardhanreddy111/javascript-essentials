@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relative Sorting</title>
+</head>
+<body>
+<h1>Sort an array according to the order defined by another array</h1>
+<h2>Given two arrays A1[] and A2[], sort A1 in such a way that the relative order among the elements will be same as those are in A2. For the elements not present in A2, append them at last in sorted order.</h2>
+<pre>
+    Input: A1[] = {2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8}
+       A2[] = {2, 1, 8, 3}
+    Output: A1[] = {2, 2, 1, 1, 8, 8, 3, 5, 6, 7, 9}
+</pre>
+
+<script>
+    function SortArray(arr1,arr2) {
+        var result = [];
+        for(var i = 0; i < arr2.length; i++){
+            for(var i = 0; i < arr1.length; i++){
+                if(arr1[i] == arr2[i]){
+
+                }
+            }
+        }
+    }
+
+    var arr1 = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8],
+        arr2 = [2, 1, 8, 3];
+    SortArray()
+</script>
+</body>
+</html>
