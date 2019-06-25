@@ -14,15 +14,17 @@ function DoublyLinkedList() {
     this.removeTail = removeTail;
     this.isEmpty = isEmpty;
     this.display = display;
-    /*insert = insert;
+    this.find = find;
+    this.findPrevious = findPrevious;
+    this.indexOf = indexOf;
+    this.insert = insert;
+    this.findPositionNode = findPositionNode;
+    this.remove = remove;
+    this.removeAt = removeAt
+    /*;
     insertEnhanced = insertEnhanced;
-    find = find;
-    findPrevious = findPrevious;
 
-
-    remove = remove;
-    removeAt = removeAt;
-    indexOf = indexOf;
+    ;
     */
 }
 
@@ -84,9 +86,79 @@ function isEmpty() {
 }
 function display() {
     let head = this.head;
-    while(head.next !== null){
+    while(head){
         console.log(head.element)
         head = head.next;
     }
-    console.log(head.element)
+   // console.log(head.element)
+}
+function find(item) {
+    let currentNode = this.head;
+    while(currentNode){
+        if(currentNode.element === item){
+            return currentNode;
+        }
+        currentNode = currentNode.next;
+    }
+    return null;
+}
+function findPrevious(item) {
+    let currentNode = this.head;
+    while(currentNode){
+        if(currentNode.element === item){
+            return currentNode.previous;
+        }
+        currentNode = currentNode.next;
+    }
+    return null;
+}
+function indexOf(item) {
+    let index = 0;
+    let currentNode = this.head;
+    while(currentNode){
+        if(currentNode.element === item){
+            return index;
+        }else{
+            currentNode = currentNode.next;
+            index++;
+        }
+    }
+    return -1;
+}
+function insert(position,element) {
+    let current_position = this.findPositionNode(position);
+    let newNode = new Node(element);
+    if(current_position) {
+        newNode.previous = current_position.previous;
+        newNode.next = current_position;
+        current_position.previous.next = newNode;
+        this.length++;
+    }else{
+        throw new Error("Node does not exist")
+    }
+}
+function findPositionNode(position) {
+    let index = 0;
+    let head = this.head;
+    while(head){
+        if(index === position){
+            return head;
+        }else{
+            head = head.next;
+            index++;
+        }
+    }
+}
+function remove(item) {
+    let remove_item = this.find(item);
+    if(remove_item){
+        remove_item.previous.next = remove_item.next;
+        remove_item.next.previous = remove_item.previous;
+        remove_item.next = remove_item.previous = null;
+        this.length--;
+    }
+}
+function removeAt(position) {
+    let remove_node = this.findPositionNode(position);
+    this.remove(remove_node.element);
 }
