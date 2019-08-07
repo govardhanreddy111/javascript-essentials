@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Longest valid Parentheses</title>
+</head>
+<body>
+<script src="../Ds/Stack.js"></script>
+<script>
+    function findMaxLength(input,n){
+        let stack = new Stack();
+        stack.push(-1);
+        let result = 0;
+        let i;
+        for(i = 0; i < n; i++){
+            if(input[i] === "("){
+                stack.push(i)
+            }
+            else{
+                stack.pop();
+                if(!stack.isEmpty()){
+                    let peek = stack.peek();
+                    result = Math.max(result,i - peek);
+                }
+                else{
+                    stack.push(i);
+                }
+            }
+        }
+        console.log(result);
+        return result;
+    }
+
+    let input = "((()())";
+    findMaxLength(input,input.length);
+</script>
+</body>
+</html>

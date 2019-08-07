@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice</title>
+    <style>
+    body * {
+        margin: 10px;
+        border: 1px solid blue;
+    }
+</style>
+</head>
+
+<body>
+<!--<script src="Ds/Stack.js"></script>-->
+<!--<script src="Ds/graph.js"></script>-->
+<script>
+    var canConstruct = function(ransomNote, magazine) {
+        let rMap = {};
+        for(let i = 0; i < ransomNote.length; i++){
+            if(rMap[ransomNote[i]]){
+                rMap[ransomNote[i]] = ++rMap[ransomNote[i]];
+            }else{
+                rMap[ransomNote[i]] = 1
+            }
+        }
+        let mMap = {};
+        for(let i = 0; i < magazine.length; i++){
+            if(mMap[magazine[i]]){
+                mMap[magazine[i]] = ++mMap[magazine[i]];
+            }else{
+                mMap[magazine[i]] = 1
+            }
+        }
+        console.log(rMap, mMap)
+        for(let i in rMap){
+            if(rMap[i] > (mMap[i] || 0)){
+                return false;
+            }
+        }
+        return true
+    };
+
+    console.log(canConstruct("aa",'aab'));
+
+</script>
+
+</body>
+</html>
